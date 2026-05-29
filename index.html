@@ -1,0 +1,97 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drum Machine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+    <main class="flex align-center justify-center">
+
+      <div id="drum-machine" class="grid mbl-8 pY-6" aria-label="BoomBox - Boite à rythmes">
+
+        <div class="left-container flex column align-center">
+          <div class="head-container flex column ">
+            <h1 class="engraved">BoomBox</h1>
+            <button id="pushBtn" class="push is-off pX-4 pY-1 br-xs engraved" aria-pressed="false">On</button>
+          </div> 
+        </div>
+
+        <div class="center-container flex align-center justify-center">
+          <div id="pad-bank" class="grid pY-4 pX-8 br-s">
+            <button id="pad-Q" class="drum-pad" aria-label="Pad Q - Kick">
+              Q
+              <audio id="Q" class="clip" src="https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FBd0.wav"></audio>
+            </button>
+            <button id="pad-W" class="drum-pad" aria-label="Pad W - Snare">
+              W
+              <audio id="W" class="clip" src="https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FSd0.wav"></audio>
+            </button>
+            <button id="pad-E" class="drum-pad" aria-label="Pad E - Rimshot">
+              E
+              <audio id="E" class="clip" src="https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FRim.wav"></audio>
+            </button>
+            <button id="pad-A" class="drum-pad" aria-label="Pad A - Handclap">
+              A
+              <audio id="A" class="clip" src="https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FHcp.wav"></audio>
+            </button>
+            <button id="pad-S" class="drum-pad" aria-label="Pad S - Closed-HH">
+              S
+              <audio id="S" class="clip" src="https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FHH_c.wav"></audio>
+            </button>
+            <button id="pad-D" class="drum-pad" aria-label="Pad D - Open-HH">
+              D
+              <audio id="D" class="clip" src="https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FHH_o.wav"></audio>
+            </button>
+            <button id="pad-Z" class="drum-pad" aria-label="Pad Z - Cowbell">
+              Z
+              <audio id="Z" class="clip" src="https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FCow.wav"></audio>
+            </button>
+            <button id="pad-X" class="drum-pad" aria-label="Pad X - Ride">
+              X
+              <audio id="X" class="clip" src="https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FRid.wav"></audio>
+            </button>
+            <button id="pad-C" class="drum-pad" aria-label="Pad C - Tambourin">
+              C
+              <audio id="C" class="clip" src="https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FTam.wav"></audio>
+            </button>
+          </div>
+        </div>
+
+        <div class="right-container flex align-center justify-center pX-8">
+          <div class="controls-container flex column align-center">
+            <h2 class="engraved mb-2">Controls</h2>
+            <p id="display" class="flex align-center justify-center" role="status" aria-live="polite" aria-atomic="true"></p>
+
+            <fieldset class="kit-container flex pT-2">
+              <legend class="engraved">Kit Selection</legend>
+
+              <input type="radio" name="kits" id="TR-707" disabled>
+              <label for="TR-707" class="pX-4 pY-1 is-off engraved">TR-707</label>
+
+              <input type="radio" name="kits" id="TR-808" disabled>
+              <label for="TR-808" class="pX-4 pY-1 is-off engraved">TR-808</label>
+
+              <input type="radio" name="kits" id="TR-909" disabled>
+              <label for="TR-909" class="pX-4 pY-1 is-off engraved">TR-909</label>
+            </fieldset>
+
+            <div class="volume-slider">
+              <label for="volume-control" class="engraved mb-1">Volume</label>
+              <input type="range" id="volume-control" min="0" max="100" step="1" value="30" aria-label="Volume (0 à 100)">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
