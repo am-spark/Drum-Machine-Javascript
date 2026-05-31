@@ -26,7 +26,7 @@
   --display-color: #ffb300;
 
   --btn-isOn-color: 48 230 51;
-  --btn-isOn-txt-color: #5AC45C;
+  --btn-isOn-txt-color: 204 155 41;
 
   --spacing: 0.25rem;
 }
@@ -538,12 +538,12 @@ input[type='radio'] {
 .is-on {
   /* transform: translateY(1px); */
 
-  color: var(--btn-isOn-txt-color); /* 153, 115, 2 */
+  color: rgb(var(--btn-isOn-txt-color) / 0.8); /* 153, 115, 2 */
   border: 1px solid rgb(var(--btn-isOn-color) / 0.33); /* 230, 174, 2 */
 
-  /* text-shadow:
-    0 0 2px rgb(var(--btn-isOn-color) / 0.4),
-    0 0 6px rgb(var(--btn-isOn-color) / 0.3); */
+  text-shadow:
+    0 0 2px rgb(var(--btn-isOn-txt-color) / 0.5),
+    0 0 4px rgb(var(--btn-isOn-txt-color) / 0.2);
 
   box-shadow:
     inset 0 0 32px rgb(var(--btn-isOn-color) / 0.4),
