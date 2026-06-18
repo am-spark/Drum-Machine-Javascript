@@ -1,172 +1,181 @@
 const BANKS = {
-  'TR-707': [
-    {
-      id: 'pad-Q',
-      keyTrigger: 'Q',
-      name: 'Kick',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FBd0.wav',
-    },
-    {
-      id: 'pad-W',
-      keyTrigger: 'W',
-      name: 'Snare',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FSd0.wav',
-    },
-    {
-      id: 'pad-E',
-      keyTrigger: 'E',
-      name: 'Rimshot',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FRim.wav',
-    },
-    {
-      id: 'pad-A',
-      keyTrigger: 'A',
-      name: 'Handclap',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FHcp.wav',
-    },
-    {
-      id: 'pad-S',
-      keyTrigger: 'S',
-      name: 'Closed-HH',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FHH_c.wav',
-    },
-    {
-      id: 'pad-D',
-      keyTrigger: 'D',
-      name: 'Open-HH',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FHH_o.wav',
-    },
-    {
-      id: 'pad-Z',
-      keyTrigger: 'Z',
-      name: 'Cowbell',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FCow.wav',
-    },
-    {
-      id: 'pad-X',
-      keyTrigger: 'X',
-      name: 'Ride',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FRid.wav',
-    },
-    {
-      id: 'pad-C',
-      keyTrigger: 'C',
-      name: 'Tambourin',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FTam.wav',
-    },
-  ],
-  'TR-808': [
-    {
-      id: 'pad-Q',
-      keyTrigger: 'Q',
-      name: 'Kick',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR808%20hifi%20set.zip/Roland%20TR808%20hifi%20set%2FBD1010.WAV',
-    },
-    {
-      id: 'pad-W',
-      keyTrigger: 'W',
-      name: 'Snare',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR808%20hifi%20set.zip/Roland%20TR808%20hifi%20set%2FSD2510.WAV',
-    },
-    {
-      id: 'pad-E',
-      keyTrigger: 'E',
-      name: 'Rimshot',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR808%20hifi%20set.zip/Roland%20TR808%20hifi%20set%2FRS.WAV',
-    },
-    {
-      id: 'pad-A',
-      keyTrigger: 'A',
-      name: 'Handclap',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR808%20hifi%20set.zip/Roland%20TR808%20hifi%20set%2FCP.WAV',
-    },
-    {
-      id: 'pad-S',
-      keyTrigger: 'S',
-      name: 'Closed-HH',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR808%20hifi%20set.zip/Roland%20TR808%20hifi%20set%2FCH.WAV',
-    },
-    {
-      id: 'pad-D',
-      keyTrigger: 'D',
-      name: 'Open-HH',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR808%20hifi%20set.zip/Roland%20TR808%20hifi%20set%2FOH10.WAV',
-    },
-    {
-      id: 'pad-Z',
-      keyTrigger: 'Z',
-      name: 'Cowbell',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR808%20hifi%20set.zip/Roland%20TR808%20hifi%20set%2FCB.WAV',
-    },
-    {
-      id: 'pad-X',
-      keyTrigger: 'X',
-      name: 'Ride',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR808%20hifi%20set.zip/Roland%20TR808%20hifi%20set%2FCY1010.WAV',
-    },
-    {
-      id: 'pad-C',
-      keyTrigger: 'C',
-      name: 'Clave',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR808%20hifi%20set.zip/Roland%20TR808%20hifi%20set%2FCL.WAV',
-    },
-  ],
-  'TR-909': [
-    {
-      id: 'pad-Q',
-      keyTrigger: 'Q',
-      name: 'Kick-1',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FBT0A0D3.WAV',
-    },
-    {
-      id: 'pad-W',
-      keyTrigger: 'W',
-      name: 'Snare',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FST0T0S7.WAV',
-    },
-    {
-      id: 'pad-E',
-      keyTrigger: 'E',
-      name: 'Rimshot',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FRIM63.WAV',
-    },
-    {
-      id: 'pad-A',
-      keyTrigger: 'A',
-      name: 'Handclap',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FHANDCLP1.WAV',
-    },
-    {
-      id: 'pad-S',
-      keyTrigger: 'S',
-      name: 'Closed-HH',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FHHCD2.WAV',
-    },
-    {
-      id: 'pad-D',
-      keyTrigger: 'D',
-      name: 'Open-HH',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FHHOD6.WAV',
-    },
-    {
-      id: 'pad-Z',
-      keyTrigger: 'Z',
-      name: 'Kick-2',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FBT3AADA.WAV',
-    },
-    {
-      id: 'pad-X',
-      keyTrigger: 'X',
-      name: 'Ride',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FRIDED0.WAV',
-    },
-    {
-      id: 'pad-C',
-      keyTrigger: 'C',
-      name: 'Crash',
-      src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FCSHD2.WAV',
-    },
-  ],
+  'TR-707': {
+    gain: 1.2,
+    pads: [
+      {
+        id: 'pad-Q',
+        keyTrigger: 'Q',
+        name: 'Kick',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FBd0.wav',
+      },
+      {
+        id: 'pad-W',
+        keyTrigger: 'W',
+        name: 'Snare',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FSd0.wav',
+      },
+      {
+        id: 'pad-E',
+        keyTrigger: 'E',
+        name: 'Rimshot',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FRim.wav',
+      },
+      {
+        id: 'pad-A',
+        keyTrigger: 'A',
+        name: 'Handclap',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FHcp.wav',
+      },
+      {
+        id: 'pad-S',
+        keyTrigger: 'S',
+        name: 'Closed-HH',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FHH_c.wav',
+      },
+      {
+        id: 'pad-D',
+        keyTrigger: 'D',
+        name: 'Open-HH',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FHH_o.wav',
+      },
+      {
+        id: 'pad-Z',
+        keyTrigger: 'Z',
+        name: 'Cowbell',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FCow.wav',
+      },
+      {
+        id: 'pad-X',
+        keyTrigger: 'X',
+        name: 'Ride',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FRid.wav',
+      },
+      {
+        id: 'pad-C',
+        keyTrigger: 'C',
+        name: 'Tambourin',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR707.zip/Roland%20TR707%2FTam.wav',
+      },
+    ],
+  },
+  'TR-808': {
+    gain: 2,
+    pads: [
+      {
+        id: 'pad-Q',
+        keyTrigger: 'Q',
+        name: 'Kick',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR808%20hifi%20set.zip/Roland%20TR808%20hifi%20set%2FBD1010.WAV',
+      },
+      {
+        id: 'pad-W',
+        keyTrigger: 'W',
+        name: 'Snare',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR808%20hifi%20set.zip/Roland%20TR808%20hifi%20set%2FSD2510.WAV',
+      },
+      {
+        id: 'pad-E',
+        keyTrigger: 'E',
+        name: 'Rimshot',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR808%20hifi%20set.zip/Roland%20TR808%20hifi%20set%2FRS.WAV',
+      },
+      {
+        id: 'pad-A',
+        keyTrigger: 'A',
+        name: 'Handclap',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR808%20hifi%20set.zip/Roland%20TR808%20hifi%20set%2FCP.WAV',
+      },
+      {
+        id: 'pad-S',
+        keyTrigger: 'S',
+        name: 'Closed-HH',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR808%20hifi%20set.zip/Roland%20TR808%20hifi%20set%2FCH.WAV',
+      },
+      {
+        id: 'pad-D',
+        keyTrigger: 'D',
+        name: 'Open-HH',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR808%20hifi%20set.zip/Roland%20TR808%20hifi%20set%2FOH10.WAV',
+      },
+      {
+        id: 'pad-Z',
+        keyTrigger: 'Z',
+        name: 'Cowbell',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR808%20hifi%20set.zip/Roland%20TR808%20hifi%20set%2FCB.WAV',
+      },
+      {
+        id: 'pad-X',
+        keyTrigger: 'X',
+        name: 'Ride',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR808%20hifi%20set.zip/Roland%20TR808%20hifi%20set%2FCY1010.WAV',
+      },
+      {
+        id: 'pad-C',
+        keyTrigger: 'C',
+        name: 'Clave',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR808%20hifi%20set.zip/Roland%20TR808%20hifi%20set%2FCL.WAV',
+      },
+    ],
+  },
+  'TR-909': {
+    gain: 1,
+    pads: [
+      {
+        id: 'pad-Q',
+        keyTrigger: 'Q',
+        name: 'Kick-1',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FBT0A0D3.WAV',
+      },
+      {
+        id: 'pad-W',
+        keyTrigger: 'W',
+        name: 'Snare',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FST0T0S7.WAV',
+      },
+      {
+        id: 'pad-E',
+        keyTrigger: 'E',
+        name: 'Rimshot',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FRIM63.WAV',
+      },
+      {
+        id: 'pad-A',
+        keyTrigger: 'A',
+        name: 'Handclap',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FHANDCLP1.WAV',
+      },
+      {
+        id: 'pad-S',
+        keyTrigger: 'S',
+        name: 'Closed-HH',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FHHCD2.WAV',
+      },
+      {
+        id: 'pad-D',
+        keyTrigger: 'D',
+        name: 'Open-HH',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FHHOD6.WAV',
+      },
+      {
+        id: 'pad-Z',
+        keyTrigger: 'Z',
+        name: 'Kick-2',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FBT3AADA.WAV',
+      },
+      {
+        id: 'pad-X',
+        keyTrigger: 'X',
+        name: 'Ride',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FRIDED0.WAV',
+      },
+      {
+        id: 'pad-C',
+        keyTrigger: 'C',
+        name: 'Crash',
+        src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FCSHD2.WAV',
+      },
+    ],
+  },
 };
 
 let state = {
@@ -180,6 +189,9 @@ const powerBtn = document.getElementById('pushBtn');
 const display = document.getElementById('display');
 const kits = document.querySelectorAll('input[name="kits"]');
 const kit707 = document.getElementById('TR-707');
+
+const audioCtx = new AudioContext();
+const audioSources = new Map(); // pad.id -> { source, gainNode }
 
 const setDisplay = (text) => {
   state.display = text;
@@ -220,6 +232,10 @@ const powerOff = () => {
 };
 
 const powerControl = () => {
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+
   state.power = !state.power;
   powerBtn.classList.toggle('is-off', !state.power);
   powerBtn.classList.toggle('is-on', state.power);
@@ -234,12 +250,29 @@ const pads = padBank.querySelectorAll('.drum-pad');
 const playSound = (pad) => {
   if (!state.power) return;
 
-  const audio = pad.querySelector('audio');
-  audio.volume = state.sliderVal;
-  audio.currentTime = 0;
-  audio.play();
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
 
-  const padData = BANKS[state.currentPadBankId].find((p) => p.id === pad.id);
+  const audio = pad.querySelector('audio');
+  audio.currentTime = 0;
+
+  if (!audioSources.has(pad.id)) {
+    const source = audioCtx.createMediaElementSource(audio);
+    const gainNode = audioCtx.createGain();
+    source.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    audioSources.set(pad.id, gainNode);
+  }
+
+  const bankGain = BANKS[state.currentPadBankId].gain;
+  audioSources.get(pad.id).gain.value = state.sliderVal * bankGain;
+
+  audio.play().catch(err => console.error('Erreur lecture audio:', err));
+
+  const padData = BANKS[state.currentPadBankId].pads.find(
+    (p) => p.id === pad.id
+  );
 
   clearTimeout(displayTimer);
   setDisplay(padData.name);
@@ -251,6 +284,11 @@ const playSound = (pad) => {
 const loadKit = (input) => {
   if (!state.power) return;
 
+  audioSources.forEach((gainNode) => {
+    gainNode.disconnect();
+  });
+  audioSources.clear(); // Clear previous audio sources
+
   kits.forEach((i) =>
     i.nextElementSibling.classList.replace('is-on', 'is-off')
   );
@@ -258,13 +296,14 @@ const loadKit = (input) => {
   input.checked = true;
   input.setAttribute('checked', '');
 
-  BANKS[input.id].forEach(({ id, name, src }) => {
+  BANKS[input.id].pads.forEach(({ id, name, src }) => {
     const pad = document.getElementById(id);
     const audio = pad.querySelector('audio');
 
+    audio.crossOrigin = 'anonymous';
     audio.src = src;
     audio.load();
-    audio.volume = state.sliderVal ?? 0.3;
+
     pad.setAttribute('aria-label', `Pad ${id.replace('pad-', '')} - ${name}`);
   });
 
@@ -289,7 +328,10 @@ const adjustVolume = (e) => {
     setDisplay(`Kit : ${state.currentPadBankId}`);
   }, 2000);
 
-  document.querySelectorAll('.clip').forEach((clip) => (clip.volume = val));
+  const bankGain = BANKS[state.currentPadBankId].gain;
+  audioSources.forEach(gainNode => {
+    gainNode.gain.value = val * bankGain;
+  });
 };
 
 volume.addEventListener('input', adjustVolume);
@@ -306,7 +348,7 @@ document.addEventListener('keydown', (e) => {
   if (!state.power) return;
 
   const key = e.key.toUpperCase();
-  const padData = BANKS[state.currentPadBankId].find(
+  const padData = BANKS[state.currentPadBankId].pads.find(
     (p) => p.keyTrigger === key
   );
   if (!padData) return;
