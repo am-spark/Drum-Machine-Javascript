@@ -59,7 +59,7 @@ const BANKS = {
     ],
   },
   'TR-808': {
-    gain: 2,
+    gain: 1.8,
     pads: [
       {
         id: 'pad-Q',
@@ -118,12 +118,12 @@ const BANKS = {
     ],
   },
   'TR-909': {
-    gain: 1,
+    gain: 0.9,
     pads: [
       {
         id: 'pad-Q',
         keyTrigger: 'Q',
-        name: 'Kick-1',
+        name: 'Kick',
         src: 'https://archive.org/download/drum-machines-collection/Roland%20TR-909.zip/Roland%20TR-909%2FSet1%2FBT0A0D3.WAV',
       },
       {
@@ -178,20 +178,74 @@ const BANKS = {
   },
 };
 
+const KEY_LAYOUTS = {
+  QWERTY: {
+    Q: 'Q',
+    W: 'W',
+    E: 'E',
+    A: 'A',
+    S: 'S',
+    D: 'D',
+    Z: 'Z',
+    X: 'X',
+    C: 'C',
+  },
+  AZERTY: {
+    Q: 'A',
+    W: 'Z',
+    E: 'E',
+    A: 'Q',
+    S: 'S',
+    D: 'D',
+    Z: 'W',
+    X: 'X',
+    C: 'C',
+  },
+};
+
 let state = {
   power: false,
   display: '',
   currentPadBankId: 'TR-707',
   sliderVal: 0.3,
+  keyLayout: 'QWERTY',
 };
 
 const powerBtn = document.getElementById('pushBtn');
 const display = document.getElementById('display');
 const kits = document.querySelectorAll('input[name="kits"]');
 const kit707 = document.getElementById('TR-707');
+const keyboardSwitch = document.getElementById('keyboard-switch');
+const switchContainer = document.querySelector('.keyboard-switch-container');
+
+const switchVisibility = () => {
+  const shouldHide = window.innerWidth < 1025;
+  switchContainer.hidden = shouldHide ? true : false;
+};
+
+switchVisibility();
 
 const audioCtx = new AudioContext();
 const audioSources = new Map(); // pad.id -> { source, gainNode }
+
+document.addEventListener(
+  'pointerdown',
+  () => {
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+  },
+  { once: true }
+);
+
+const updatePadLabels = () => {
+  const mapping = KEY_LAYOUTS[state.keyLayout];
+
+  pads.forEach((pad) => {
+    const physicalKey = pad.id.replace('pad-', '');
+    const displayLetter = mapping[physicalKey];
+
+    pad.querySelector('.pad-label').textContent = displayLetter;
+  });
+};
 
 const setDisplay = (text) => {
   state.display = text;
@@ -232,10 +286,6 @@ const powerOff = () => {
 };
 
 const powerControl = () => {
-  if (audioCtx.state === 'suspended') {
-    audioCtx.resume();
-  }
-
   state.power = !state.power;
   powerBtn.classList.toggle('is-off', !state.power);
   powerBtn.classList.toggle('is-on', state.power);
@@ -249,10 +299,6 @@ const pads = padBank.querySelectorAll('.drum-pad');
 
 const playSound = (pad) => {
   if (!state.power) return;
-
-  if (audioCtx.state === 'suspended') {
-    audioCtx.resume();
-  }
 
   const audio = pad.querySelector('audio');
   audio.currentTime = 0;
@@ -268,7 +314,7 @@ const playSound = (pad) => {
   const bankGain = BANKS[state.currentPadBankId].gain;
   audioSources.get(pad.id).gain.value = state.sliderVal * bankGain;
 
-  audio.play().catch(err => console.error('Erreur lecture audio:', err));
+  audio.play().catch((err) => console.error('Erreur lecture audio:', err));
 
   const padData = BANKS[state.currentPadBankId].pads.find(
     (p) => p.id === pad.id
@@ -287,7 +333,7 @@ const loadKit = (input) => {
   audioSources.forEach((gainNode) => {
     gainNode.disconnect();
   });
-  audioSources.clear(); // Clear previous audio sources
+  audioSources.clear();
 
   kits.forEach((i) =>
     i.nextElementSibling.classList.replace('is-on', 'is-off')
@@ -316,11 +362,9 @@ const loadKit = (input) => {
 
 const volume = document.getElementById('volume-control');
 
-const adjustVolume = (e) => {
-  if (!state.power) return;
-
-  const val = parseFloat(e.target.value) / 100;
+const adjustVolume = (val) => {
   state.sliderVal = val;
+  if (!state.power) return;
 
   clearTimeout(displayTimer);
   setDisplay(`Volume : ${Math.round(val * 100)}`);
@@ -329,27 +373,55 @@ const adjustVolume = (e) => {
   }, 2000);
 
   const bankGain = BANKS[state.currentPadBankId].gain;
-  audioSources.forEach(gainNode => {
+  audioSources.forEach((gainNode) => {
     gainNode.gain.value = val * bankGain;
   });
 };
 
-volume.addEventListener('input', adjustVolume);
+const savedVolume = parseFloat(localStorage.getItem('sliderVal') ?? 0.3);
+volume.value = savedVolume * 100;
+adjustVolume(savedVolume);
+
+volume.addEventListener('input', (e) => {
+  const val = parseFloat(e.target.value) / 100;
+  localStorage.setItem('sliderVal', val);
+  adjustVolume(val);
+});
+
+const savedLayout = localStorage.getItem('keyLayout') ?? 'QWERTY';
+state.keyLayout = savedLayout;
+keyboardSwitch.checked = savedLayout === 'AZERTY';
+updatePadLabels();
+
+keyboardSwitch.addEventListener('change', (e) => {
+  state.keyLayout = e.target.checked ? 'AZERTY' : 'QWERTY';
+  localStorage.setItem('keyLayout', state.keyLayout);
+  updatePadLabels();
+});
 
 kits.forEach((input) => {
   input.addEventListener('change', () => loadKit(input));
 });
 
 pads.forEach((pad) => {
-  pad.addEventListener('click', () => playSound(pad));
+  pad.addEventListener('pointerdown', () => {
+    playSound(pad);
+  });
 });
 
 document.addEventListener('keydown', (e) => {
   if (!state.power) return;
 
-  const key = e.key.toUpperCase();
+  const pressedChar = e.key.toUpperCase();
+
+  const mapping = KEY_LAYOUTS[state.keyLayout];
+  const physicalKey = Object.keys(mapping).find(
+    (k) => mapping[k] === pressedChar
+  );
+  if (!physicalKey) return;
+
   const padData = BANKS[state.currentPadBankId].pads.find(
-    (p) => p.keyTrigger === key
+    (p) => p.keyTrigger === physicalKey
   );
   if (!padData) return;
 
@@ -362,4 +434,4 @@ document.addEventListener('keydown', (e) => {
 
 powerBtn.addEventListener('click', powerControl);
 
-volume.value = state.sliderVal * 100;
+window.addEventListener('resize', switchVisibility);

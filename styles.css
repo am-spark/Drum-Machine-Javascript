@@ -6,7 +6,7 @@
   --display-font: 'Share Tech Mono', monospace;
 
   --bg-color-1: hsl(200, 74%, 83%);
-  --bg-color-2: #226282;
+  --bg-color-2: #3291bf;
 
   --model-color-1: hsl(30, 54%, 74%);
   --model-color-2: hsl(50, 68%, 80%);
@@ -17,9 +17,9 @@
   --txt-color: #444;
 
   --btn-bg-color: #e9e9e9;
-  --btn-txt-color: #608c5d;
+  --btn-txt-color: #888;
 
-  --pad-color: #22753bab;
+  --pad-color: #22753baa;
   --pad-id-color: #e7e7e7;
 
   --display-bg-color: #154725;
@@ -92,7 +92,7 @@ main {
   transform: rotateX(0);
 
   grid-template-columns: repeat(8, 1fr);
-  row-gap: 2.3rem;
+  row-gap: 2rem;
   font-family: var(--controls-font);
   color: var(--txt-color);
 
@@ -102,7 +102,7 @@ main {
     var(--model-color-2)
   );
   border: 3px solid var(--model-border-color);
-  border-radius: 0.5rem;
+  /* border-radius: 0.5rem; */
 
   box-shadow:
     0 6px 10px rgba(0, 0, 0, 0.3),
@@ -121,11 +121,10 @@ main {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 
   z-index: -1;
-  /* C'est ici que vous gérez finement l'intensité du plastique rugueux */
-  opacity: 0.22;
+  opacity: 0.25;
 
   background-blend-mode: overlay;
-  pointer-events: none; /* Pour que le calque n'empêche pas de cliquer sur les pads */
+  pointer-events: none;
 }
 
 .left-container {
@@ -142,6 +141,11 @@ main {
 
 .right-container {
   grid-column: 6 / span 3;
+}
+
+.keyboard-switch-container {
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--btn-txt-color), black 30%);
 }
 
 #pad-bank {
@@ -168,7 +172,7 @@ main {
 
 #pushBtn {
   align-self: center;
-  /* font-weight: bold; */
+  font-weight: bold;
   background-color: var(--btn-bg-color);
   padding-bottom: 6px;
 
@@ -196,30 +200,82 @@ main {
     inset -1px -1px 1px rgba(55, 55, 55, 0.13);
 }
 
+.keyboard-switch-container legend {
+  display: block;
+  margin-inline: auto;
+}
+
+.switch {
+  position: relative;
+  top: 1px;
+  width: 2.3rem;
+  height: 1rem;
+  margin: 0 0.5rem;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: var(--btn-bg-color);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  transition: 0.2s;
+}
+
+.slider::before {
+  content: '';
+  position: absolute;
+  height: 0.75rem;
+  width: 0.75rem;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  transition: 0.2s;
+
+  background: radial-gradient(
+    circle at 35% 35%,
+    color-mix(in srgb, #608c5d 100%, white 40%),
+    color-mix(in srgb, #608c5d 100%, black 70%)
+  );
+
+  box-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+input:checked + .slider::before {
+  transform: translateX(19px);
+}
+
 .drum-pad {
-  width: 65px;
-  height: 65px;
+  width: 60px;
+  height: 60px;
   background-color: var(--pad-color);
   color: var(--pad-id-color);
   font-size: 1.4rem;
 
   box-shadow:
     0 4px 6px rgba(0, 0, 0, 0.4),
-    /* Ombre sous le pad */ inset 0 2px 3px rgba(255, 255, 255, 0.3),
-    /* Reflet sur l'arête haute */ inset 0 -2px 2px rgba(0, 0, 0, 0.4); /* Ombre de l'arête basse */
+    inset 0 2px 3px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 2px rgba(0, 0, 0, 0.4);
   border-radius: var(--spacing);
 
   transition: all 0.05s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  touch-action: manipulation;
 }
 
 .drum-pad:active {
   transform: translateY(1px);
-
-  /* 2. On réduit l'ombre extérieure (le pad est plus proche du fond)
-      3. On accentue l'ombre interne (le relief s'inverse) */
   box-shadow:
     0 2px 4px rgba(0, 0, 0, 0.3),
-    /* Ombre externe réduite */ inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #display {
@@ -249,7 +305,9 @@ input[type='radio'] {
 
 .kit-container label {
   display: inline-flex;
+  width: 85px;
   font-size: 0.85rem;
+  font-weight: 500;
   letter-spacing: 0.07rem;
   background-color: var(--btn-bg-color);
   border-radius: 0.25rem;
@@ -313,12 +371,7 @@ input[type='radio'] {
   width: 14px;
   height: 13px;
   /* border-radius: 50%; */
-  background: linear-gradient(
-    to bottom,
-    #717171 0%,
-    /* face éclairée */ #608c5d 50%,
-    /* couleur d'origine au centre */ #3a3a3a 100% /* face dans l'ombre */
-  );
+  background: linear-gradient(to bottom, #717171 0%, #608c5d 50%, #3a3a3a 100%);
   border: 2px solid #ddd;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
@@ -328,12 +381,7 @@ input[type='radio'] {
   appearance: none;
   width: 16px;
   height: 14px;
-  background: linear-gradient(
-    to bottom,
-    #717171 0%,
-    /* face éclairée */ #608c5d 50%,
-    /* couleur d'origine au centre */ #3a3a3a 100% /* face dans l'ombre */
-  );
+  background: linear-gradient(to bottom, #717171 0%, #608c5d 50%, #3a3a3a 100%);
   border: 2px solid #ddd;
   border-radius: var(--spacing);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
@@ -532,12 +580,10 @@ input[type='radio'] {
 
   box-shadow:
     1px 1px 1px rgba(0, 0, 0, 0.4),
-    /* Ombre externe réduite */ -1px -1px 2px rgba(55, 55, 55, 0.1);
+    -1px -1px 2px rgba(55, 55, 55, 0.1);
 }
 
 .is-on {
-  /* transform: translateY(1px); */
-
   color: rgb(var(--btn-isOn-txt-color) / 0.8); /* 153, 115, 2 */
   border: 1px solid rgb(var(--btn-isOn-color) / 0.33); /* 230, 174, 2 */
 
@@ -548,17 +594,19 @@ input[type='radio'] {
   box-shadow:
     inset 0 0 32px rgb(var(--btn-isOn-color) / 0.4),
     1px 1px 1px rgba(0, 0, 0, 0.4),
-    /* Ombre externe réduite */ -1px -1px 2px rgba(55, 55, 55, 0.1);
+    -1px -1px 2px rgba(55, 55, 55, 0.1);
 }
 
 .is-active {
   transform: translateY(1px);
 
-  /* 2. On réduit l'ombre extérieure (le pad est plus proche du fond)
-      3. On accentue l'ombre interne (le relief s'inverse) */
   box-shadow:
     0 2px 4px rgba(0, 0, 0, 0.3),
-    /* Ombre externe réduite */ inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+[hidden] {
+  display: none !important;
 }
 
 @media screen and (max-width: 1024px) {
@@ -580,5 +628,13 @@ input[type='radio'] {
   .right-container {
     grid-column: 1;
     min-width: 0;
+  }
+
+  .kit-container {
+    column-gap: 1rem;
+  }
+
+  .controls-container {
+    margin-bottom: 3rem;
   }
 }
